@@ -58,3 +58,22 @@
 {"message":"IP: ::1, Session: w7TMl8WrKrdVLl_Ml5weDwMQQlAF8kDQ, Username: Admin, Usertype: admin, Timestamp: 2021-05-24T09:05:29.956Z, Action: Logout","level":"info"}
 {"message":"IP: ::1, Session: acgYKkf9AjVztQK-5rw04GF6ogyDNrkI, Username: James, Usertype: customer, Timestamp: 2021-05-24T09:05:35.983Z, Action: Login","level":"info"}
 {"message":"IP: ::1, Session: aA8xUtT9eYtFlzq5cYt8VTysfrS74tc3, Username: Admin, Usertype: admin, Timestamp: 2021-05-24T09:06:04.840Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: 3MwRB8dpfRlAZf1t0q99ulwOQUttVRsK, Username: Admin, Usertype: admin, Timestamp: 2021-05-25T01:15:55.125Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: 9ncXdhZULMtAaLsxEb8_nbqbZL1FGOAc, Username: Admin, Usertype: admin, Timestamp: 2021-05-26T09:26:02.725Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: 9ncXdhZULMtAaLsxEb8_nbqbZL1FGOAc, Username: Admin, Usertype: admin, Timestamp: 2021-05-26T09:34:23.814Z, Action: Add Admin","level":"info"}
+{"message":"IP: ::1, Session: 9ncXdhZULMtAaLsxEb8_nbqbZL1FGOAc, Username: Admin, Usertype: admin, Timestamp: 2021-05-26T09:34:46.965Z, Action: Add Product","level":"info"}
+{"message":"IP: ::1, Session: 9ncXdhZULMtAaLsxEb8_nbqbZL1FGOAc, Username: Admin, Usertype: admin, Timestamp: 2021-05-26T09:35:06.778Z, Action: Logout","level":"info"}
+{"message":"IP: ::1, Session: r3qTZDGjJ7dcvoJyYUWTrsfVy1NzZyNh, Username: Admin, Usertype: admin, Timestamp: 2021-05-26T09:35:12.715Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: r3qTZDGjJ7dcvoJyYUWTrsfVy1NzZyNh, Username: Admin, Usertype: admin, Timestamp: 2021-05-26T09:38:11.452Z, Action: User Name Update","level":"info"}
+{"message":"IP: ::1, Session: r3qTZDGjJ7dcvoJyYUWTrsfVy1NzZyNh, Username: Admin, Usertype: admin, Timestamp: 2021-05-26T09:38:24.736Z, Action: Product Name Update","level":"info"}
+{"message":"IP: ::1, Session: r3qTZDGjJ7dcvoJyYUWTrsfVy1NzZyNh, Username: Admin, Usertype: admin, Timestamp: 2021-05-26T09:48:56.381Z, Action: Logout","level":"info"}
+{"message":"IP: ::1, Session: muQu-FQbPA0pZIGBRyw_QA_BDCBDoWs-, Username: James, Usertype: customer, Timestamp: 2021-05-26T09:49:09.183Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: oqfoi12_XVq-1kO9Tpe5vUSB2Ah8svGJ, Username: Admin, Usertype: admin, Timestamp: 2021-05-26T09:52:21.046Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: oqfoi12_XVq-1kO9Tpe5vUSB2Ah8svGJ, Username: Admin, Usertype: admin, Timestamp: 2021-05-26T09:52:30.963Z, Action: Logout","level":"info"}
+{"message":"IP: ::1, Session: lwngDjHCD7peQAjFuaaq1ShXwFD5bawk, Username: James, Usertype: customer, Timestamp: 2021-05-26T09:52:40.387Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: lwngDjHCD7peQAjFuaaq1ShXwFD5bawk, Username: James, Usertype: customer, Timestamp: 2021-05-26T09:54:47.527Z, Action: Logout","level":"info"}
+{"message":"IP: ::1, Session: q7R-vNl-K3U1BV8pe6l5e0lZzojULme1, Username: Admin, Usertype: admin, Timestamp: 2021-05-26T09:54:57.293Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: q7R-vNl-K3U1BV8pe6l5e0lZzojULme1, Username: Admin, Usertype: admin, Timestamp: 2021-05-26T09:55:09.291Z, Action: Image Upload","level":"info"}
+{"message":"IP: ::1, Session: q7R-vNl-K3U1BV8pe6l5e0lZzojULme1, Username: Admin, Usertype: admin, Timestamp: 2021-05-26T09:55:21.593Z, Action: Logout","level":"info"}
+{"message":"IP: ::1, Session: h72VNKjXM54dSlBvJkNWVUspk0bXC1M1, Username: Admin, Usertype: admin, Timestamp: 2021-05-26T09:55:53.642Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: h72VNKjXM54dSlBvJkNWVUspk0bXC1M1, Username: Admin, Usertype: admin, Timestamp: 2021-05-26T09:56:05.342Z, Action: Image Upload","level":"info"}

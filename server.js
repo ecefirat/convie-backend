@@ -61,7 +61,7 @@ app.use(
 
 app.use(fileUpload({ createParentPath: true }));
 
-const rateLimit = require("express-rate-limit");
+// const rateLimit = require("express-rate-limit");
 
 // const dayLimiter = rateLimit({
 //   windowMs: 24 * 60 * 60 * 1000, // 24 hours
