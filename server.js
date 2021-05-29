@@ -34,7 +34,7 @@ const logger = winston.createLogger(logConfiguration);
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://convie-frontend.herokuapp.com/"],
     credentials: true,
   })
 );
@@ -52,9 +52,12 @@ app.use(
     secret: process.env.session_secret,
     saveUninitialized: false,
     resave: false,
+    proxy: true,
     cookie: {
-      secure: false,
-      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: false,
+      path: "/",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     },
   })
 );
@@ -70,11 +73,10 @@ app.use(fileUpload({ createParentPath: true }));
 
 // const secondLimiter = rateLimit({
 //   windowMs: 1000, // 1 second
-//   max: 10, // 1 request
+//   max: 10, // 10 request
 // });
 
-// app.use(dayLimiter);
-// app.use(secondLimiter);
+// app.use(dayLimiter, secondLimiter);
 
 app.post(
   "/register",
@@ -405,7 +407,7 @@ app.post("/product", (req, res) => {
     if (cb === 400) {
       res.status(400).send({ message: "product cannot be deleted" });
     } else {
-      res.status(200).send({ pID: cb });
+      res.status(200).send({ pName: cb });
       logger.info(
         `IP: ${req.ip}, Session: ${req.sessionID}, Username: ${
           req.session.user.customer_name
@@ -429,6 +431,8 @@ app.post(
     db.addProduct(req, (cb) => {
       if (cb === 400) {
         res.status(400).send({ message: "product cannot be added" });
+      } else if (cb[0] === 409) {
+        res.status(409).send();
       } else {
         res.status(200).send({ pName: cb });
         logger.info(
@@ -450,8 +454,14 @@ app.post(
   body("customer_email").isEmail(),
   body("customer_password").isLength({ min: 8 }),
   (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     db.addAdmin(req, (cb) => {
-      if (cb === 401) {
+      if (cb === 409) {
+        res.status(409).send();
+      } else if (cb === 401) {
         res.status(401).send({ message: "hashing error" });
       } else if (cb === 400) {
         res.status(400).send({ message: "admin cannot be added" });

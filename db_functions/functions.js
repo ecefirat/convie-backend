@@ -307,6 +307,7 @@ const deleteUser = (req, cb) => {
 const deleteProduct = (req, cb) => {
   console.log(req.body);
   const pID = req.body.pID;
+  const pName = req.body.pName;
 
   const DeleteProduct = "DELETE FROM products WHERE pID= ?";
 
@@ -315,7 +316,7 @@ const deleteProduct = (req, cb) => {
       cb(400);
       console.log(err);
     } else {
-      cb(pID);
+      cb(pName);
       console.log("product deleted");
     }
   });
@@ -328,13 +329,24 @@ const addProduct = (req, cb) => {
 
   const AddProduct = "INSERT INTO products(pName, pPrice) VALUES (?, ?)";
 
-  db.query(AddProduct, [pName, pPrice], (err, res) => {
+  const checkifExists = "SELECT pName FROM products WHERE pName = ?";
+
+  db.query(checkifExists, [pName], (err, res) => {
     if (err) {
       cb(400);
-      console.log(err);
+      console.log("exists error", err);
+    } else if (res.length > 0) {
+      cb([409, pName]);
     } else {
-      cb(pName);
-      console.log("product added");
+      db.query(AddProduct, [pName, pPrice], (err, res) => {
+        if (err) {
+          cb(400);
+          console.log(err);
+        } else {
+          cb(pName);
+          console.log("product added");
+        }
+      });
     }
   });
 };
@@ -349,24 +361,35 @@ const addAdmin = (req, cb) => {
   const AddAdmin =
     "INSERT INTO customers(customer_name, customer_surname, customer_email, customer_password, role) VALUES (?, ?, ?, ?, 'admin')";
 
-  bcrypt.hash(customer_password, saltRounds, (err, hash) => {
+  const checkifExists =
+    "SELECT customer_email FROM customers WHERE customer_email = ?";
+
+  db.query(checkifExists, [customer_email], (err, res) => {
     if (err) {
       console.log(err);
-      cb(401);
-    }
-    db.query(
-      AddAdmin,
-      [customer_name, customer_surname, customer_email, hash],
-      (err, res) => {
+    } else if (res.length > 0) {
+      cb(409);
+    } else {
+      bcrypt.hash(customer_password, saltRounds, (err, hash) => {
         if (err) {
-          cb(400);
           console.log(err);
-        } else {
-          cb(customer_name);
-          console.log("admin added");
+          cb(401);
         }
-      }
-    );
+        db.query(
+          AddAdmin,
+          [customer_name, customer_surname, customer_email, hash],
+          (err, res) => {
+            if (err) {
+              cb(400);
+              console.log(err);
+            } else {
+              cb(customer_name);
+              console.log("admin added");
+            }
+          }
+        );
+      });
+    }
   });
 };
 
