@@ -1,10 +1,19 @@
 require("dotenv").config({
-  path: "/Users/ece/Downloads/convie/excludes/.env",
+  path: "./.env",
 });
+
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const mysql = require("mysql");
 const { add } = require("winston");
+
+// const db = mysql.createPool({
+//   host: "us-cdbr-east-03.cleardb.com",
+//   user: "b874bdcad2998d",
+//   password: "1aef0535",
+//   database: "heroku_12cb0a13d8b8427",
+//   port: 8889,
+// });
 
 const db = mysql.createPool({
   host: process.env.host,

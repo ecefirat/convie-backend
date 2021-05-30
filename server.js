@@ -7,9 +7,7 @@ const cookieParser = require("cookie-parser");
 const { Cookie } = require("express-session");
 const fileUpload = require("express-fileupload");
 const path = require("path");
-require("dotenv").config({
-  path: "/Users/ece/Downloads/convie/excludes/.env",
-});
+require("dotenv").config();
 const app = express();
 const { body, validationResult } = require("express-validator");
 
@@ -55,7 +53,7 @@ app.use(cookieParser());
 app.use(
   session({
     key: "customer",
-    secret: "xTDwaz8pjqKLWbg4",
+    secret: process.env.SESSION_SECRET || "xTDwaz8pjqKLWbg4",
     saveUninitialized: false,
     resave: false,
     proxy: true,
