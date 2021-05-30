@@ -179,3 +179,6 @@
 {"message":"IP: ::1, Session: ig729wo0mE42Gpz4nCr3BHoFZkSkFxUW, Username: Admin, Usertype: admin, Timestamp: 2021-05-30T02:53:08.693Z, Action: Login","level":"info"}
 {"message":"IP: ::1, Session: rwsUIfE6-dYOV8UU3bXJp0ulCHOx3CCX, Username: Admin, Usertype: admin, Timestamp: 2021-05-30T02:53:58.289Z, Action: Login","level":"info"}
 {"message":"IP: ::1, Session: HmxwmtMK5KNSWrEAHYhdaO4PJ_BzBCho, Username: Admin, Usertype: admin, Timestamp: 2021-05-30T02:54:13.817Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: DQjKeXQZeceLkpONzhfUOYXgWiex2GPh, Username: Admin, Usertype: admin, Timestamp: 2021-05-30T08:12:17.122Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: DQjKeXQZeceLkpONzhfUOYXgWiex2GPh, Username: Admin, Usertype: admin, Timestamp: 2021-05-30T08:14:24.577Z, Action: Logout","level":"info"}
+{"message":"IP: ::1, Session: kQ1H4y9hGLTQfXJpDieFV6EmvU4uH7Hq, Username: Admin, Usertype: admin, Timestamp: 2021-05-30T08:14:26.509Z, Action: Login","level":"info"}

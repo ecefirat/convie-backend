@@ -34,12 +34,7 @@ app.use(
   cors({
     origin: ["http://localhost:3000", "https://convie-frontend.herokuapp.com/"],
     credentials: true,
-    allowedHeaders: [
-      "Origin",
-      "Content-Type",
-      "Authorization",
-      "x-requested-with",
-    ],
+    allowedHeaders: ["Origin", "Content-Type", "Authorization"],
   })
 );
 app.use(express.json());
@@ -48,6 +43,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json({ limit: "200mb" }));
 // app.use(bodyParser.urlencoded({ limit: "200mb",  extended: true, parameterLimit: 1000000 }));
 app.use("/", express.static(path.join(__dirname, "/")));
+app.enable("trust proxy", true);
 
 app.use(cookieParser());
 app.use(
