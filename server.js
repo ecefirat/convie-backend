@@ -36,6 +36,12 @@ app.use(
   cors({
     origin: ["http://localhost:3000", "https://convie-frontend.herokuapp.com/"],
     credentials: true,
+    allowedHeaders: [
+      "Origin",
+      "Content-Type",
+      "Authorization",
+      "x-requested-with",
+    ],
   })
 );
 app.use(express.json());
@@ -49,15 +55,15 @@ app.use(cookieParser());
 app.use(
   session({
     key: "customer",
-    secret: process.env.session_secret,
+    secret: "xTDwaz8pjqKLWbg4",
     saveUninitialized: false,
     resave: false,
     proxy: true,
     cookie: {
       secure: process.env.NODE_ENV === "production",
       httpOnly: false,
-      path: "/",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      maxAge: 60000 * 60 * 48,
     },
   })
 );
