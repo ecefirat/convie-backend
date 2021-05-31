@@ -10,6 +10,7 @@ const path = require("path");
 require("dotenv").config();
 const app = express();
 const { body, validationResult } = require("express-validator");
+var MySQLStore = require("express-mysql-session")(session);
 
 const winston = require("winston");
 
@@ -29,6 +30,14 @@ const logger = winston.createLogger(logConfiguration);
 // };
 
 // app.use(logger);
+
+var sessionStore = new MySQLStore({
+  host: process.env.host,
+  user: process.env.user,
+  password: process.env.password,
+  database: process.env.database,
+  port: process.env.port,
+});
 
 app.use(
   cors({
@@ -53,6 +62,7 @@ app.use(
     saveUninitialized: false,
     resave: false,
     proxy: true,
+    store: sessionStore,
     cookie: {
       secure: process.env.NODE_ENV === "production",
       httpOnly: false,
