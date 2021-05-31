@@ -327,7 +327,12 @@ app.post("/orders", (req, res) => {
 app.get("/onlyAdmin", (req, res) => {
   console.log(req.ip);
   console.log("server ip");
-  let whiteList = ["::192.168.1.110", "::1", "::ffff:127.0.0.1"];
+  let whiteList = [
+    "::192.168.1.110",
+    "::1",
+    "::ffff:127.0.0.1",
+    process.env.ipAdmin,
+  ];
   let comingIp = req.ip;
   let checkIP = whiteList.includes(comingIp);
   console.log(req.session.user.role);
