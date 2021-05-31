@@ -41,7 +41,7 @@ var sessionStore = new MySQLStore({
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://convie-frontend.herokuapp.com/"],
+    origin: ["http://localhost:3000", "https://convie-frontend.herokuapp.com"],
     credentials: true,
     allowedHeaders: ["Origin", "Content-Type", "Authorization"],
   })
