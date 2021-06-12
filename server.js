@@ -329,7 +329,7 @@ app.get("/onlyAdmin", (req, res) => {
   console.log("server ip");
   let whiteList = [
     "::192.168.1.110",
-    "192.168.1.219",
+    "::192.168.1.219",
     "::1",
     "::ffff:127.0.0.1",
     process.env.ipAdmin,
