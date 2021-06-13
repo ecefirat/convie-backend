@@ -361,7 +361,6 @@ const addProduct = (req, cb) => {
 };
 
 const addAdmin = (req, cb) => {
-  console.log(req.body);
   const customer_name = req.body.customer_name;
   const customer_surname = req.body.customer_surname;
   const customer_email = req.body.customer_email;

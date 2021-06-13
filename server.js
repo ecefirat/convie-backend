@@ -326,7 +326,6 @@ app.post("/orders", (req, res) => {
 
 app.get("/onlyAdmin", (req, res) => {
   console.log(req.ip);
-  console.log("server ip");
   let whiteList = [
     "::192.168.1.110",
     "::192.168.1.219",
@@ -338,7 +337,9 @@ app.get("/onlyAdmin", (req, res) => {
   let checkIP = whiteList.includes(comingIp);
   console.log(req.session.user.role);
   console.log(checkIP);
+  //checking if the user role is admin
   if (req.session.user.role === "admin") {
+    //checking if the ip is from the whitelist ip array
     if (checkIP === true) {
       res.status(200).send({ message: "allowed" });
     } else if (checkIP === false) {
