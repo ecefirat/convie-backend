@@ -7,14 +7,6 @@ const saltRounds = 10;
 const mysql = require("mysql");
 const { add } = require("winston");
 
-// const db = mysql.createPool({
-//   host: "us-cdbr-east-03.cleardb.com",
-//   user: "b874bdcad2998d",
-//   password: "1aef0535",
-//   database: "heroku_12cb0a13d8b8427",
-//   port: 8889,
-// });
-
 const db = mysql.createPool({
   host: process.env.host,
   user: process.env.user,
@@ -229,8 +221,6 @@ const orderHistory = (req, cb) => {
       cb(405);
       console.log(err);
     } else if (results.length > 0) {
-      // console.log(results);
-      // console.log("above");
       cb(results);
     } else if ((results.length = 0)) {
       cb(404);

@@ -24,13 +24,6 @@ const logConfiguration = {
 
 const logger = winston.createLogger(logConfiguration);
 
-// const logger = (req, res, next) => {
-//   console.log(moment().format());
-//   next();
-// };
-
-// app.use(logger);
-
 var sessionStore = new MySQLStore({
   host: process.env.host,
   user: process.env.user,
@@ -49,8 +42,6 @@ app.use(
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.use(bodyParser.json({ limit: "200mb" }));
-// app.use(bodyParser.urlencoded({ limit: "200mb",  extended: true, parameterLimit: 1000000 }));
 app.use("/", express.static(path.join(__dirname, "/")));
 app.enable("trust proxy", true);
 
@@ -74,19 +65,19 @@ app.use(
 
 app.use(fileUpload({ createParentPath: true }));
 
-// const rateLimit = require("express-rate-limit");
+const rateLimit = require("express-rate-limit");
 
-// const dayLimiter = rateLimit({
-//   windowMs: 24 * 60 * 60 * 1000, // 24 hours
-//   max: 1000, // 1000 requests
-// });
+const dayLimiter = rateLimit({
+  windowMs: 24 * 60 * 60 * 1000, // 24 hours
+  max: 1000, // 1000 requests
+});
 
-// const secondLimiter = rateLimit({
-//   windowMs: 1000, // 1 second
-//   max: 10, // 10 request
-// });
+const secondLimiter = rateLimit({
+  windowMs: 1000, // 1 second
+  max: 10, // 10 request
+});
 
-// app.use(dayLimiter, secondLimiter);
+app.use(dayLimiter, secondLimiter);
 
 app.post(
   "/register",
@@ -195,7 +186,6 @@ app.post(
 );
 
 app.post("/picture", async (req, res) => {
-  // implement validation
   try {
     if (!req.files) {
       res.send({ message: "no files" });
@@ -219,7 +209,6 @@ app.post("/picture", async (req, res) => {
 });
 
 app.post("/uploads", (req, res) => {
-  // implement validation
   db.changeImage(req, (cb) => {
     if (cb === 404) {
       res.status(404).send({ message: "image update failed" });
@@ -295,7 +284,6 @@ app.post("/order", (req, res) => {
 });
 
 app.post("/history", (req, res) => {
-  // let user_id = req.session.user.customer_id
   db.orderHistory(req, (cb) => {
     if (cb === 405) {
       res.status(405).send({ message: "failed" });
@@ -365,7 +353,6 @@ app.post(
       } else {
         console.log(cb);
         console.log("pname updates");
-        // req.session.user.customer_address = cb;
         res.status(200).send({ message: cb });
         logger.info(
           `IP: ${req.ip}, Session: ${req.sessionID}, Username: ${

@@ -84,19 +84,19 @@ describe("testing address update", () => {
   });
 });
 
-// describe("testing profile picture sending", () => {
-//   test("respond 200", async (done) => {
-//     const response = await request
-//       .post("/uploads")
-//       .send({
-//         profile_picture: "testing",
-//         customer_email: "q@q.com",
-//       })
-//       .set("Cookie", cookie);
-//     expect(response.status).toBe(200);
-//     done();
-//   });
-// });
+describe("testing profile picture sending", () => {
+  test("respond 200", async (done) => {
+    const response = await request
+      .post("/uploads")
+      .send({
+        profile_picture: "testing",
+        customer_email: "q@q.com",
+      })
+      .set("Cookie", cookie);
+    expect(response.status).toBe(200);
+    done();
+  });
+});
 
 describe("testing delete account", () => {
   test("respond 200", async (done) => {
@@ -119,18 +119,17 @@ describe("get user information", () => {
   });
 });
 
-//getting a weird error but working fine
-// describe("testing sending order", () => {
-//   test("respond 200", async (done) => {
-//     const response = await request
-//       .post("/order")
-//       .send({
-//         totals: 22,
-//         customer_id: 47,
-//         customer_address: "testing address",
-//       })
-//       .set("Cookie", cookie);
-//     expect(response.status).toBe(200);
-//     done();
-//   });
-// });
+describe("testing sending order", () => {
+  test("respond 200", async (done) => {
+    const response = await request
+      .post("/order")
+      .send({
+        totals: 22,
+        customer_id: 47,
+        customer_address: "testing address",
+      })
+      .set("Cookie", cookie);
+    expect(response.status).toBe(200);
+    done();
+  });
+});
