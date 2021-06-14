@@ -1,5 +1,13 @@
 # Convie
 
+A web app for grocery shopping.
+
+# Roadmap
+
+- Implementing a grocery delivery service(like ubereats)
+- Drivers/riders can sign up and get notifications when an order is placed
+- Delivery is completed when drivers deliver the groceries
+
 # Installation
 
 - Git clone both repos: https://github.com/ecefirat/convie-frontend and https://github.com/ecefirat/convie-backend
@@ -19,12 +27,6 @@
 - Go to frontend .env file and paste REACT_APP_URL=http://localhost:5000
 - npm run dev for backend
 - npm start for frontend
-
-# Roadmap
-
-- Implementing a grocery delivery service(like ubereats)
-- Drivers/riders can sign up and get notifications when an order is placed
-- Delivery is completed when drivers deliver the groceries
 
 # Technologies used
 
