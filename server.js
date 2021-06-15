@@ -319,7 +319,7 @@ app.get("/onlyAdmin", (req, res) => {
     "::192.168.1.219",
     "::1",
     "::ffff:127.0.0.1",
-    process.env.ipAdmin,
+    process.env.IPADMIN,
   ];
   let comingIp = req.ip;
   let checkIP = whiteList.includes(comingIp);
