@@ -209,6 +209,14 @@ app.post("/picture", async (req, res) => {
 });
 
 app.post("/uploads", (req, res) => {
+  try {
+    fileStr = req.body.data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.post("/uploads", (req, res) => {
   db.changeImage(req, (cb) => {
     if (cb === 404) {
       res.status(404).send({ message: "image update failed" });
@@ -312,31 +320,32 @@ app.post("/orders", (req, res) => {
   });
 });
 
-app.get("/onlyAdmin", (req, res) => {
-  console.log(req.ip);
-  let whiteList = [
-    "::192.168.1.110",
-    "::192.168.1.219",
-    "::1",
-    "::ffff:127.0.0.1",
-    process.env.IPADMIN,
-  ];
-  let comingIp = req.ip;
-  let checkIP = whiteList.includes(comingIp);
-  console.log(req.session.user.role);
-  console.log(checkIP);
-  //checking if the user role is admin
-  if (req.session.user.role === "admin") {
-    //checking if the ip is from the whitelist ip array
-    if (checkIP === true) {
-      res.status(200).send({ message: "allowed" });
-    } else if (checkIP === false) {
-      res.status(403).send({ message: "not allowed" });
-    }
-  } else if (req.session.user.role === "customer") {
-    res.status(403).send({ message: "customer account" });
-  }
-});
+// // ip whitelist for admins is disabled for the live site
+// app.get("/onlyAdmin", (req, res) => {
+//   console.log(req.ip);
+//   let whiteList = [
+//     "::192.168.1.110",
+//     "::192.168.1.219",
+//     "::1",
+//     "::ffff:127.0.0.1",
+//     process.env.IPADMIN,
+//   ];
+//   let comingIp = req.ip;
+//   let checkIP = whiteList.includes(comingIp);
+//   console.log(req.session.user.role);
+//   console.log(checkIP);
+//   //checking if the user role is admin
+//   if (req.session.user.role === "admin") {
+//     //checking if the ip is from the whitelist ip array
+//     if (checkIP === true) {
+//       res.status(200).send({ message: "allowed" });
+//     } else if (checkIP === false) {
+//       res.status(403).send({ message: "not allowed" });
+//     }
+//   } else if (req.session.user.role === "customer") {
+//     res.status(403).send({ message: "customer account" });
+//   }
+// });
 
 app.post(
   "/pName",
@@ -351,8 +360,8 @@ app.post(
       if (cb === 400) {
         res.status(400).send({ message: "no change in pname" });
       } else {
-        console.log(cb);
-        console.log("pname updates");
+        //         console.log(cb);
+        // console.log("pname updates");
         res.status(200).send({ message: cb });
         logger.info(
           `IP: ${req.ip}, Session: ${req.sessionID}, Username: ${
@@ -375,8 +384,8 @@ app.post("/uName", body("uName").isLength({ max: 20 }), (req, res) => {
     if (cb === 400) {
       res.status(400).send({ message: "no change in uname" });
     } else {
-      console.log(cb);
-      console.log("uname updates");
+      // console.log(cb);
+      // console.log("uname updates");
       res.status(200).send({ message: cb });
       logger.info(
         `IP: ${req.ip}, Session: ${req.sessionID}, Username: ${

@@ -45,7 +45,7 @@ const registerCustomer = (req, cb) => {
             if (err) {
               cb(400);
             } else {
-              console.log(result);
+              // console.log(result);
               cb(200);
             }
           }
@@ -73,14 +73,14 @@ const loginCustomer = (req, cb) => {
       cb(404);
     }
     if (result.length > 0) {
-      console.log(result[0]);
-      console.log("db login");
+      // console.log(result[0]);
+      // console.log("login");
       bcrypt.compare(password, result[0].customer_password, (err, response) => {
         if (err) {
           console.log(err);
         } else if (!response) {
           cb(401);
-          console.log("passwords dont match");
+          // console.log("passwords dont match");
         } else if (response) {
           db.query(loginCustomer, [email], (error, res) => {
             if (error) {
@@ -105,17 +105,17 @@ const changeAddress = (req, cb) => {
     if (err) {
       cb(400);
       console.log(err);
-      console.log("update failed");
+      // console.log("update failed");
     }
     if (res) {
       cb(customer_address);
-      console.log("address updated");
+      // console.log("address updated");
     }
   });
 };
 
 const changeImage = (req, res, cb) => {
-  console.log(req.body.profile_picture);
+  // console.log(req.body.profile_picture);
   const customer_email = req.body.customer_email;
   const profile_picture = req.body.profile_picture;
 
@@ -125,10 +125,10 @@ const changeImage = (req, res, cb) => {
     if (err) {
       cb(404);
       console.log(err);
-      console.log("image update failed");
+      // console.log("image update failed");
     }
     if (res) {
-      console.log("image update good");
+      // console.log("image update done");
     }
   });
 };
@@ -141,9 +141,9 @@ const deleteAccount = (req, cb) => {
   db.query(DeleteAccount, [customer_email], (err, res) => {
     if (err) {
       console.log(err);
-      console.log("account can't be deleted");
+      // console.log("account can't be deleted");
     } else if (res) {
-      console.log("account deleted");
+      // console.log("account deleted");
       cb(200);
     }
   });
@@ -183,7 +183,6 @@ const sendOrder = (req, cb) => {
   const amount = req.body.totals;
   const customer_id = req.body.customer_id;
   const customer_address = req.body.customer_address;
-  console.log(amount);
 
   const SendOrder =
     "INSERT INTO orders(order_amount, customer_id, order_address) VALUES (?, ?, ?);";
@@ -198,21 +197,20 @@ const sendOrder = (req, cb) => {
       cb(200);
       db.query(SendOrderDetails, [res.insertId], (err, res) => {
         if (err) {
-          console.log("order details error");
+          // console.log("order details error");
           console.log(err);
         } else {
-          console.log("success foreign key");
+          // console.log("success foreign key");
         }
       });
     } else {
-      console.log("error at order details");
+      // console.log("error at order details");
     }
   });
 };
 
 const orderHistory = (req, cb) => {
   const customer_id = req.body.customer_id;
-  console.log(customer_id);
   const OrderHistory =
     "SELECT * FROM orders WHERE customer_id = ? ORDER BY order_id DESC";
 
@@ -239,7 +237,7 @@ const deleteOrder = (req, cb) => {
       console.log(err);
     } else {
       cb(order_id);
-      console.log("order deleted");
+      // console.log("order deleted");
     }
   });
 };
@@ -247,20 +245,17 @@ const deleteOrder = (req, cb) => {
 const changePName = (req, cb) => {
   const pName = req.body.data;
   const pID = req.body.pID;
-  console.log(req.body);
-  console.log(pID);
-  console.log(pName);
 
   const ChangePName = "UPDATE products SET pName = ? WHERE pID = ?";
   db.query(ChangePName, [pName, pID], (err, res) => {
     if (err) {
       cb(400);
       console.log(err);
-      console.log("pname failed");
+      // console.log("pname failed");
     }
     if (res) {
       cb(pName);
-      console.log("pname update good");
+      // console.log("pname updated");
     }
   });
 };
@@ -268,8 +263,6 @@ const changePName = (req, cb) => {
 const changeUName = (req, cb) => {
   const uName = req.body.data;
   const customer_id = req.body.customer_id;
-  console.log(req.body);
-  console.log(uName);
 
   const ChangeUName =
     "UPDATE customers SET customer_name = ? WHERE customer_id = ?";
@@ -277,17 +270,16 @@ const changeUName = (req, cb) => {
     if (err) {
       cb(400);
       console.log(err);
-      console.log("uname failed");
+      // console.log("uname failed");
     }
     if (res) {
       cb(uName);
-      console.log("uname update good");
+      // console.log("uname updated");
     }
   });
 };
 
 const deleteUser = (req, cb) => {
-  console.log(req.body);
   const customer_id = req.body.user_id;
 
   const DeleteUser = "DELETE FROM customers WHERE customer_id= ?";
@@ -298,13 +290,12 @@ const deleteUser = (req, cb) => {
       console.log(err);
     } else {
       cb(customer_id);
-      console.log("user deleted");
+      // console.log("user deleted");
     }
   });
 };
 
 const deleteProduct = (req, cb) => {
-  console.log(req.body);
   const pID = req.body.pID;
   const pName = req.body.pName;
 
@@ -316,13 +307,12 @@ const deleteProduct = (req, cb) => {
       console.log(err);
     } else {
       cb(pName);
-      console.log("product deleted");
+      // console.log("product deleted");
     }
   });
 };
 
 const addProduct = (req, cb) => {
-  console.log(req.body);
   const pName = req.body.pName;
   const pPrice = req.body.pPrice;
 
@@ -343,7 +333,7 @@ const addProduct = (req, cb) => {
           console.log(err);
         } else {
           cb(pName);
-          console.log("product added");
+          // console.log("product added");
         }
       });
     }
@@ -382,7 +372,7 @@ const addAdmin = (req, cb) => {
               console.log(err);
             } else {
               cb(customer_name);
-              console.log("admin added");
+              // console.log("admin added");
             }
           }
         );
