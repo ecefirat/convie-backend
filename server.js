@@ -11,6 +11,7 @@ require("dotenv").config();
 const app = express();
 const { body, validationResult } = require("express-validator");
 var MySQLStore = require("express-mysql-session")(session);
+const { cloudinary } = require("./cloudinary");
 
 const winston = require("winston");
 
@@ -39,8 +40,8 @@ app.use(
     allowedHeaders: ["Origin", "Content-Type", "Authorization"],
   })
 );
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json({ limit: "10mb" }));
+app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 
 app.use("/", express.static(path.join(__dirname, "/")));
 app.enable("trust proxy", true);
@@ -185,53 +186,72 @@ app.post(
   }
 );
 
-app.post("/picture", async (req, res) => {
-  try {
-    if (!req.files) {
-      res.send({ message: "no files" });
-    } else if (req.files.picture.name.endsWith("jpeg")) {
-      const { picture } = req.files;
-      picture.mv("./uploads/" + picture.name);
-      res.send({ picture });
-      logger.info(
-        `IP: ${req.ip}, Session: ${req.sessionID}, Username: ${
-          req.session.user.customer_name
-        }, Usertype: ${
-          req.session.user.role
-        }, Timestamp: ${new Date().toJSON()}, Action: Image Upload`
-      );
-    } else {
-      res.status(415).send({ message: "wrong file type" });
-    }
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
+// app.post("/picture", async (req, res) => {
+//   try {
+//     if (!req.files) {
+//       res.send({ message: "no files" });
+//     } else if (req.files.picture.name.endsWith("jpeg")) {
+//       const { picture } = req.files;
+//       picture.mv("./uploads/" + picture.name);
+//       res.send({ picture });
+//       logger.info(
+//         `IP: ${req.ip}, Session: ${req.sessionID}, Username: ${
+//           req.session.user.customer_name
+//         }, Usertype: ${
+//           req.session.user.role
+//         }, Timestamp: ${new Date().toJSON()}, Action: Image Upload`
+//       );
+//     } else {
+//       res.status(415).send({ message: "wrong file type" });
+//     }
+//   } catch (err) {
+//     res.status(500).send(err);
+//   }
+// });
 
-app.post("/uploads", (req, res) => {
+app.post("/api", async (req, res) => {
   try {
-    fileStr = req.body.data;
+    const fileStr = req.body.data;
+    const uploadedImg = await cloudinary.uploader.upload(fileStr, {
+      tags: req.session.user.customer_id,
+      width: 120,
+      height: 120,
+      upload_preset: "convie_uploads",
+    });
+    console.log(uploadedImg);
+    res.json({ msg: "uploaded!" });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ err: "something is wrong" });
   }
 });
 
-app.post("/uploads", (req, res) => {
-  db.changeImage(req, (cb) => {
-    if (cb === 404) {
-      res.status(404).send({ message: "image update failed" });
-    } else if (cb === 200) {
-      res.status(200).send({ message: "image changed" });
-      logger.info(
-        `IP: ${req.ip}, Session: ${req.sessionID}, Username: ${
-          req.session.user.customer_name
-        }, Usertype: ${
-          req.session.user.role
-        }, Timestamp: ${new Date().toJSON()}, Action: Image Update`
-      );
-    }
-  });
+app.get("/api/images", async (req, res) => {
+  const { resources } = await cloudinary.search
+    .expression("folder:convie_uploads")
+    .execute();
+  const customer_id = resources[0].tags;
+  const publicIds = resources.map((file) => file.public_id);
+  console.log(resources);
+  res.status(200).send(customer_id);
 });
+
+// app.post("/uploads", (req, res) => {
+//   db.changeImage(req, (cb) => {
+//     if (cb === 404) {
+//       res.status(404).send({ message: "image update failed" });
+//     } else if (cb === 200) {
+//       res.status(200).send({ message: "image changed" });
+//       logger.info(
+//         `IP: ${req.ip}, Session: ${req.sessionID}, Username: ${
+//           req.session.user.customer_name
+//         }, Usertype: ${
+//           req.session.user.role
+//         }, Timestamp: ${new Date().toJSON()}, Action: Image Update`
+//       );
+//     }
+//   });
+// });
 
 app.post("/account", (req, res) => {
   db.deleteAccount(req, (cb) => {
