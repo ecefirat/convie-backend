@@ -219,6 +219,7 @@ app.post("/api", async (req, res) => {
       upload_preset: "convie_uploads",
     });
     console.log(uploadedImg);
+    console.log("uploadedImg");
     res.json({ msg: "uploaded!" });
   } catch (error) {
     console.log(error);
@@ -226,14 +227,13 @@ app.post("/api", async (req, res) => {
   }
 });
 
-app.get("/api/images", async (req, res) => {
+app.post("/api/images", async (req, res) => {
+  const userid = req.session.user.customer_id;
   const { resources } = await cloudinary.search
-    .expression("folder:convie_uploads")
+    .expression(`folder:convie_uploads AND tags=${userid}`)
     .execute();
-  const customer_id = resources[0].tags;
-  const publicIds = resources.map((file) => file.public_id);
-  console.log(resources);
-  res.status(200).send(customer_id);
+  const publicId = resources[0].public_id;
+  res.status(200).send({ imgid: publicId });
 });
 
 // app.post("/uploads", (req, res) => {

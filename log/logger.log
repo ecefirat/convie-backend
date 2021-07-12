@@ -4,3 +4,13 @@
 {"message":"IP: ::1, Session: ibF5yJ7QrHPX7WX027ujCjQAbROZTixB, Username: Admin, Usertype: admin, Timestamp: 2021-06-29T04:02:10.541Z, Action: Address Update","level":"info"}
 {"message":"IP: ::1, Session: ibF5yJ7QrHPX7WX027ujCjQAbROZTixB, Username: Admin, Usertype: admin, Timestamp: 2021-06-29T04:02:17.548Z, Action: Logout","level":"info"}
 {"message":"IP: ::1, Session: 7uaCdAeaa5uKHP5JHv9MeU9YosdLo4Ul, Username: Admin, Usertype: admin, Timestamp: 2021-06-29T04:02:19.123Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: O99M62LMCel5oa9wDvW3MBcJdStEf4Dr, Username: Admin, Usertype: admin, Timestamp: 2021-07-05T03:18:05.720Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: O99M62LMCel5oa9wDvW3MBcJdStEf4Dr, Username: Admin, Usertype: admin, Timestamp: 2021-07-05T03:18:08.862Z, Action: Logout","level":"info"}
+{"message":"IP: ::1, Session: FTIvJyT0NXcEAGmPFxtaskhMxbWG7wmb, Username: James, Usertype: customer, Timestamp: 2021-07-05T03:18:13.513Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: cTWawuo76o9uZNUnHDNxAAqZt9NBQvqI, Username: Admin, Usertype: admin, Timestamp: 2021-07-11T10:26:19.998Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: cTWawuo76o9uZNUnHDNxAAqZt9NBQvqI, Username: Admin, Usertype: admin, Timestamp: 2021-07-12T04:05:03.775Z, Action: Logout","level":"info"}
+{"message":"IP: ::1, Session: DWuWmkyKUw9Yt7jboORdkjG_YO0iPU9J, Username: James, Usertype: customer, Timestamp: 2021-07-12T04:05:11.810Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: DWuWmkyKUw9Yt7jboORdkjG_YO0iPU9J, Username: James, Usertype: customer, Timestamp: 2021-07-12T11:29:47.711Z, Action: Logout","level":"info"}
+{"message":"IP: ::1, Session: eYlhNqDonCgioz9uPWnYeH1_jUutwbP9, Username: Admin, Usertype: admin, Timestamp: 2021-07-12T11:29:51.174Z, Action: Login","level":"info"}
+{"message":"IP: ::1, Session: eYlhNqDonCgioz9uPWnYeH1_jUutwbP9, Username: Admin, Usertype: admin, Timestamp: 2021-07-12T11:32:36.279Z, Action: Logout","level":"info"}
+{"message":"IP: ::1, Session: -mfLfaYtYArRA2_z1xRdAyAdfduGqvMr, Username: Admin, Usertype: admin, Timestamp: 2021-07-12T11:32:40.654Z, Action: Login","level":"info"}
